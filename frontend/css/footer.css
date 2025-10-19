@@ -1,0 +1,73 @@
+.app-footer {
+  display: block;
+  background-color: var(--charcoal);
+  color: var(--white);
+  padding: 2rem 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.app-footer .container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.app-footer .row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2.5rem 1.6rem;
+  /* margin-left: 0;
+  margin-right: 0; */
+}
+
+.app-footer .row > .col {
+  min-width: 180px;
+  flex: 1 1 0;
+  /* padding-left: 0;
+  padding-right: 0; */
+}
+
+.logo-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.footer-heading {
+  color: var(--white);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+}
+
+.footer-link-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  color: var(--white);
+}
+
+.footer-link-item:last-child {
+  margin-bottom: 0;
+}
+
+.footer-link-item i,
+.footer-link-item .fa {
+  color: var(--mint-green);
+  min-width: 20px;
+  text-align: center;
+  font-size: 0.95rem;
+  margin-top: 2px;
+}
+
+.footer-bottom {
+  border-top: 1px solid var(--mint-green);
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
