@@ -1,0 +1,30 @@
+.featured-heading {
+  color: var(--chart-1);
+  font-weight: 700;
+  font-size: 1.25rem;
+  text-align: center;
+  margin: 0 0 1rem;
+}
+
+.featured-divider {
+   height: 0.3rem;         
+  margin: 2.5rem 0;
+  background-color: #f7a385;
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    #f7a385 10%,
+    #e56d40 90%,
+    #e56d40 100%
+  );
+}
+
+.featured-divider.reverse {
+  background-image: linear-gradient(
+    to left,
+    transparent,
+    #f7a385 10%,
+    #e56d40 90%,
+    #e56d40 100%
+  );
+}

@@ -1,5 +1,4 @@
 .hero-section {
-  background-color: var(--off-white);
   background-image: radial-gradient(
       circle at 88% 82%,
       var(--grad-accent-a) 0%,
@@ -8,13 +7,11 @@
     radial-gradient(circle at 8% 14%, var(--grad-accent-b) 0%, transparent 20%),
     linear-gradient(
       315deg,
-      var(--grad-1) 0%,
-      var(--grad-2) 45%,
-      var(--grad-3) 100%
+      var(--grad-3) 0%,
+      var(--grad-2) 55%,
+      var(--grad-1) 100%
     );
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  border-bottom: 1px solid var(--white);
 }
 
 .hero-image-container {
@@ -75,7 +72,8 @@
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s ease, transform 0.25s ease, visibility 0s linear 0.25s;
+  transition: opacity 0.25s ease, transform 0.25s ease,
+    visibility 0s linear 0.25s;
 }
 .kit-preview img.visible {
   pointer-events: auto;
