@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!primaryButton || !outlineButton || !partyKitImage || !partyPetKitImage)
     return;
 
+
   function show(img) {
     img.classList.add("visible");
   }
@@ -18,12 +19,23 @@ document.addEventListener("DOMContentLoaded", function () {
   show(partyKitImage);
   hide(partyPetKitImage);
 
-  outlineButton.addEventListener("pointerenter", function () {
+  function showPartyKit () {
+    show(partyKitImage);
+    hide(partyPetKitImage);
+  }
+
+  function showPartyPetKit () {
     show(partyPetKitImage);
     hide(partyKitImage);
-  });
-  outlineButton.addEventListener("pointerleave", function () {
-    hide(partyPetKitImage);
-    show(partyKitImage);
-  });
+  }
+
+  showPartyKit();
+
+  primaryButton.addEventListener("click", showPartyKit);
+  primaryButton.addEventListener("pointerover", showPartyKit);
+
+  outlineButton.addEventListener("click", showPartyPetKit);
+  outlineButton.addEventListener("pointerover", showPartyPetKit);
+
+  outlineButton.addEventListener("pointerleave", showPartyKit);
 });

@@ -21,25 +21,22 @@
     <!-- HEADER -->
     <header class="header-section">
         <nav class="navbar navbar-expand-lg">
-            <div class="container-fluid">
-                <div class="d-flex align-items-center w-100">
-                    <div class="d-flex align-items-center logo-wrapper">
-                        <div class="logo-circle me-2" aria-hidden="true">
-                            <img src="images/logo-eixo-gourmet.png" class="logo-img" alt="Logo Eixo Gourmet">
-                        </div>
-                        <div class="logo-text ms-2">
-                            <a class="navbar-brand m-0" href="index.html">Eixo Gourmet</a>
-                            <p class="m-0 small text-muted"> Sua celebração na medida certa!</p>
-                        </div>
+            <div class="container-fluid d-flex align-items-center w-100">
+                <div class="d-flex align-items-center logo-wrapper">
+                    <div class="logo-circle me-2" aria-hidden="true">
+                        <img src="images/logo-eixo-gourmet.png" class="logo-img" alt="Logo Eixo Gourmet">
                     </div>
-
-                    <div class="ms-auto d-flex align-items-center">
-                        <button class="btn cart-btn position-relative" type="button" aria-label="Faça sua encomenda">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span class="ms-2">Faça sua encomenda</span>
-                            <span class="cart-badge" aria-hidden="true">0</span>
-                        </button>
+                    <div class="logo-text ms-2">
+                        <a class="navbar-brand m-0" href="index.html">Eixo Gourmet</a>
+                        <p class="m-0 small text-muted"> Sua celebração na medida certa!</p>
                     </div>
+                </div>
+                <div class="ms-auto d-flex align-items-center">
+                    <button class="btn cart-btn position-relative" type="button" aria-label="Faça sua encomenda">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        <span class="ms-2">Faça sua encomenda</span>
+                        <span class="cart-badge" aria-hidden="true">0</span>
+                    </button>
                 </div>
             </div>
         </nav>
@@ -49,10 +46,9 @@
     <!-- HERO -->
     <section class="hero-section">
         <div class="novidade-strip">
-            <div class="container">
-                <div class="novidade-content">
-                    <span>NOVIDADE: Kit Festa Pet Edition!</span>
-                </div>
+            <div class="novidade-track" aria-hidden="true">
+                <span class="novidade-item"><i class="fa-solid fa-dog"></i> NOVIDADE: Kit Festa Pet Edition!</span>
+                <span class="novidade-item"><i class="fa-solid fa-dog"></i> NOVIDADE: Kit Festa Pet Edition!</span>
             </div>
         </div>
         <div class="container p-5 px-4 px-sm-6 px-lg-8">
@@ -71,8 +67,7 @@
                     </div>
                 </div>
             </div>
-            <div class="kit-preview position-relative overflow-hidden rounded-4 shadow-sm mx-auto"
-                style="max-width:600px; height:400px;">
+            <div class="kit-preview position-relative overflow-hidden rounded-4 shadow-sm mx-auto">
                 <img id="partyKit" src="images/kit_festa.png"
                     class="position-absolute top-50 start-50 translate-middle img-fluid" alt="Mesa com Kit Festa">
                 <img id="partyPetKit" src="images/pet-festa(2).png"
