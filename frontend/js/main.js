@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!primaryButton || !outlineButton || !partyKitImage || !partyPetKitImage)
     return;
 
-
   function show(img) {
     img.classList.add("visible");
   }
@@ -19,12 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
   show(partyKitImage);
   hide(partyPetKitImage);
 
-  function showPartyKit () {
+  function showPartyKit() {
     show(partyKitImage);
     hide(partyPetKitImage);
   }
 
-  function showPartyPetKit () {
+  function showPartyPetKit() {
     show(partyPetKitImage);
     hide(partyKitImage);
   }
@@ -40,40 +39,72 @@ document.addEventListener("DOMContentLoaded", function () {
   outlineButton.addEventListener("pointerleave", showPartyKit);
 });
 
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", fetchAndRenderKits);
+} else {
+  fetchAndRenderKits();
+}
+
 // KITS
 
-// const kitsData = [
-//         { id: 1, nome: , descricao: , pessoas:, preco: , imagem: },
-//         { id: 2, nome: , descricao: , pessoas:, preco: , imagem: },
-//         { id: 3, nome: , descricao: , pessoas:, preco:  imagem:  },
-//         { id: 4, nome: , descricao: , pessoas: 6, preco: , imagem: },
-//         { id: 5, nome: , descricao: , pessoas: , preco: , imagem:  },
-//     ];
+async function fetchAndRenderKits() {
+  try {
+    const response = await fetch("/api/kits");
+    if (!response.ok)
+      throw new Error(`Falha ao obter kits: ${response.status}`);
+    const kits = await response.json();
+    renderKits(kits);
+  } catch (error) {
+    console.log("Erro ao buscar kits:", error);
+  }
+}
 
-// function createCardContent(kit) {
-//         return `
-//             <img src="${kit.imagem}" class="card-img-top" alt="Imagem do ${kit.nome}">
-//             <div class="card-body px-4 pb-4">
-//                 <h5 class="card-title mb-2 text-dark">${kit.nome}</h5>
-//                 <p class="card-text text-muted small mb-3">${kit.descricao}</p>
-                
-//                 <div class="d-flex align-items-center text-muted small mb-3">
-//                     <i class="fas fa-users me-2"></i>
-//                     <span>Para ${kit.pessoas} pessoas</span>
-//                 </div>
-                
-//                 <p class="card-price fs-5 fw-bold text-dark">R$ ${kit.preco}</p>
-                
-//                 <a href="#" class="btn btn-detalhes w-100 mt-2">Ver Detalhes</a>
-//             </div>
-//         `;
-//     }
+function renderKits(kits) {
+  const carouselInner = document.querySelector("#carousel-kits-inner");
+  if (!carouselInner) {
+    console.error("Elemento #carousel-kits-inner não encontrado.");
+    return;
+  }
 
-//     document.addEventListener('DOMContentLoaded', () => {
-//         kitsData.forEach(kit => {
-//             const cardElement = document.querySelector(`.card-kit[data-id="${kit.id}"]`);
-//             if (cardElement) {
-//                 cardElement.innerHTML = createCardContent(kit);
-//             }
-//         });
-//     });
+  carouselInner.innerHTML = "";
+
+  for (let i = 0; i < kits.length; i += 3) {
+    const slide = document.createElement("div");
+    slide.className = "carousel-item" + (i === 0 ? " active" : "");
+
+    const row = document.createElement("div");
+    row.className = "row justify-content-center g-4";
+
+    for (let j = 0; j < 3; j++) {
+      const kit = kits[i + j];
+      const col = document.createElement("div");
+      col.className = "col-12 col-md-4";
+
+      if (kit) {
+        const precoFormatado = Number(kit.preco || 0).toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        });
+
+         col.innerHTML = `
+          <div class="card card-kit h-100" data-id="${kit._id}">
+            <img class="card-img-top" src="images/${kit.imagem}" alt="${kit.nome}">
+            <div class="card-body">
+              <h4 class="card-title">${kit.nome}</h4>
+              <p class="card-text">Pessoas: ${kit.pessoas} | Item Principal: ${kit.itens?.[0] || ""}</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <span class="h5 mb-0 text-success">${precoFormatado}</span>
+              <a href="#" class="btn-details">Ver Detalhes</a>
+            </div>
+          </div>
+        `;
+      } else {
+        col.classList.add("d-none", "d-md-block");
+      }
+      row.appendChild(col);
+    }
+    slide.appendChild(row);
+    carouselInner.appendChild(slide);
+  }
+}
