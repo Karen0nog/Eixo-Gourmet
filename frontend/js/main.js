@@ -68,16 +68,16 @@ function renderKits(kits) {
 
   carouselInner.innerHTML = "";
 
-  const isMobile = window.innerWidth <= 768;
+  const isMobile = window.innerWidth < 768;
 
   if (isMobile) {
-    const slide = document.createElement("div");
-    slide.className = "carousel-item active";
+    kits.forEach((kit, index) => {
+      const slide = document.createElement("div");
+      slide.className = index === 0 ? "carousel-item active" : "carousel-item";
 
-    const row = document.createElement("div");
-    row.className = "row justify-content-center g-4";
+      const row = document.createElement("div");
+      row.className = "row justify-content-center g-0";
 
-    kits.forEach((kit) => {
       const col = document.createElement("div");
       col.className = "col-12";
 
@@ -88,27 +88,25 @@ function renderKits(kits) {
 
       col.innerHTML = `
         <div class="card card-kit h-100" data-id="${kit._id}">
-          <img class="card-img-top" src="images/${kit.imagem}" alt="${
-        kit.nome
-      }">
+          <img class="card-img-top img-fluid w-100" src="images/${
+            kit.imagem
+          }" alt="${kit.nome}">
           <div class="card-body">
             <h4 class="card-title">${kit.nome}</h4>
             <p class="card-text">Pessoas: ${kit.pessoas} | Itens: ${
-        kit.itens || ""
+        kit.itens || [].join(", ")
       }</p>
           </div>
-          <div class="card-footer d-flex justify-content-between align-items-center">
+          </div>
+          <div class="card-footer d-flex justify-content-center">
             <span class="h5 mb-0 text-success">${precoFormatado}</span>
-            <a href="#" class="btn-details">Ver Detalhes</a>
           </div>
         </div>
       `;
       row.appendChild(col);
+      slide.appendChild(row);
+      carouselInner.appendChild(slide);
     });
-
-    slide.appendChild(row);
-    carouselInner.appendChild(slide);
-    return;
   }
 
   // Desktop / tablet: renderiza em slides de 3
@@ -138,10 +136,10 @@ function renderKits(kits) {
             <div class="card-body">
               <h4 class="card-title">${kit.nome}</h4>
               <p class="card-text">Pessoas: ${kit.pessoas} | Itens: ${
-          kit.itens || ""
+          kit.itens || [].join(", ")
         }</p>
             </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
+            <div class="card-footer justify-content-center d-flex">
               <span class="h5 mb-0 text-success">${precoFormatado}</span>
             </div>
           </div>
