@@ -3,10 +3,19 @@ require("dotenv").config({ path: path.join(__dirname, "..", ".env") });
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const browserSync = require('browser-sync');
+
+let browserSync;
+const isDevelopment = process.env.NODE_ENV !== "production";
+if (isDevelopment) {
+  try {
+    browserSync = require("browser-sync").create();
+  } catch (error) {
+    console.error("Erro ao carregar o BrowserSync:", error);
+  }
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
-const isDevelopment = process.env.NODE_ENV !== "production";
 
 // --- Conexão com o MongoDB Atlas ---
 const DB_URI = process.env.DB_URI;
@@ -15,6 +24,8 @@ if (!DB_URI) {
   console.error("Erro: A variável de ambiente DB_URI não está definida.");
   process.exit(1);
 }
+
+const Kit = require("./models/Kit");
 
 // Middleware
 app.use(cors());
@@ -50,8 +61,6 @@ app.post('/api/kits', async (req, res) => {
 app.use((req, res, next) => {
   res.status(404).send({ mensagem: "Rota Não Encontrada." });
 });
-// Conectar ao MongoDB
-const Kit = require("./models/Kit");
 
 const INITIAL_KITS = [
     {
@@ -82,7 +91,6 @@ const INITIAL_KITS = [
 
 
 async function createInitialKits() {
-
 const results = INITIAL_KITS.map(async (kitData) => {
     const filter = { nome: kitData.nome };
     const update = {...kitData };

@@ -63,6 +63,13 @@
   --grad-3: #eaf9f0;
   --grad-accent-a: rgba(136, 213, 195, 0.06);
   --grad-accent-b: rgba(255, 214, 118, 0.04);
+
+  --navbar-text: #ffffff;
+  --eixo-gourmet-text-secondary: rgba(255, 255, 255, 0.9);
+  --bg-primary: var(--charcoal);
+  --text-muted: #6b7280;
+  --text-success: var(--chart-2);
+  --text-dark: #111827;
 }
 
 * {
@@ -155,8 +162,8 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: var(--eixo-gourmet-text-secondary);
-  background-color: var(--cart-btn-bg);
+  color: var(--card-foreground);
+  background-color: var(--white);
   border: 1px solid var(--chart-2);
   font-weight: 700;
   transition: transform 0.12s ease;
@@ -226,7 +233,7 @@ body {
 @media (max-width: 1024px) {
   :root {
     --font-size: 15px;
-  --radius: 0.5rem;
+    --radius: 0.5rem;
   }
 
   body {
@@ -258,7 +265,7 @@ body {
   }
 }
 
-@media (max-width: 768px)  {
+@media (max-width: 768px) {
   :root {
     --font-size: 14px;
     --radius: 0.45rem;

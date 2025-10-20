@@ -68,6 +68,50 @@ function renderKits(kits) {
 
   carouselInner.innerHTML = "";
 
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+    const slide = document.createElement("div");
+    slide.className = "carousel-item active";
+
+    const row = document.createElement("div");
+    row.className = "row justify-content-center g-4";
+
+    kits.forEach((kit) => {
+      const col = document.createElement("div");
+      col.className = "col-12";
+
+      const precoFormatado = Number(kit.preco || 0).toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+      });
+
+      col.innerHTML = `
+        <div class="card card-kit h-100" data-id="${kit._id}">
+          <img class="card-img-top" src="images/${kit.imagem}" alt="${
+        kit.nome
+      }">
+          <div class="card-body">
+            <h4 class="card-title">${kit.nome}</h4>
+            <p class="card-text">Pessoas: ${kit.pessoas} | Itens: ${
+        kit.itens || ""
+      }</p>
+          </div>
+          <div class="card-footer d-flex justify-content-between align-items-center">
+            <span class="h5 mb-0 text-success">${precoFormatado}</span>
+            <a href="#" class="btn-details">Ver Detalhes</a>
+          </div>
+        </div>
+      `;
+      row.appendChild(col);
+    });
+
+    slide.appendChild(row);
+    carouselInner.appendChild(slide);
+    return;
+  }
+
+  // Desktop / tablet: renderiza em slides de 3
   for (let i = 0; i < kits.length; i += 3) {
     const slide = document.createElement("div");
     slide.className = "carousel-item" + (i === 0 ? " active" : "");
@@ -86,16 +130,19 @@ function renderKits(kits) {
           currency: "BRL",
         });
 
-         col.innerHTML = `
+        col.innerHTML = `
           <div class="card card-kit h-100" data-id="${kit._id}">
-            <img class="card-img-top" src="images/${kit.imagem}" alt="${kit.nome}">
+            <img class="card-img-top" src="images/${kit.imagem}" alt="${
+          kit.nome
+        }">
             <div class="card-body">
               <h4 class="card-title">${kit.nome}</h4>
-              <p class="card-text">Pessoas: ${kit.pessoas} | Item Principal: ${kit.itens?.[0] || ""}</p>
+              <p class="card-text">Pessoas: ${kit.pessoas} | Itens: ${
+          kit.itens || ""
+        }</p>
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
               <span class="h5 mb-0 text-success">${precoFormatado}</span>
-              <a href="#" class="btn-details">Ver Detalhes</a>
             </div>
           </div>
         `;
