@@ -304,6 +304,7 @@ body {
     font-weight: 600;
   }
 }
+
 @media (max-width: 425px) {
   :root {
     --font-size: 13px;

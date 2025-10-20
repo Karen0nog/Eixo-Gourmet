@@ -1,13 +1,27 @@
 .featured-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   color: var(--chart-1);
   font-weight: 700;
   font-size: 1.25rem;
-  text-align: center;
-  margin: 0 0 1rem;
+  line-height: 1.2;
+  flex-wrap: wrap;
+  white-space: normal;
+  margin: 0;
+}
+
+.featured-heading .fa,
+.featured-heading i {
+  flex: 0 0 auto;
+  font-size: 1.25rem;
+  color: var(--chart-1);
+  display: inline-block;
+  line-height: 1;
 }
 
 .featured-divider {
-   height: 0.3rem;         
+  height: 0.3rem;
   margin: 2.5rem 0;
   background-color: #f7a385;
   background-image: linear-gradient(
@@ -28,3 +42,7 @@
     #e56d40 100%
   );
 }
+
+
+/* Responsividade */
+@media (max-width: 1024px)

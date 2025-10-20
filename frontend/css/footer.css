@@ -8,8 +8,11 @@
   line-height: 1.6;
 }
 .app-footer .container {
+  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
 .app-footer .row {
@@ -17,16 +20,14 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 2.5rem 1.6rem;
-  /* margin-left: 0;
-  margin-right: 0; */
+  gap: 1.6rem 1.4rem;
 }
 
 .app-footer .row > .col {
   min-width: 180px;
   flex: 1 1 0;
-  /* padding-left: 0;
-  padding-right: 0; */
+  padding: 0 0.8rem;
+  box-sizing: border-box;
 }
 
 .logo-wrapper {
@@ -44,10 +45,10 @@
 
 .footer-link-item {
   display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  margin-bottom: 0.75rem;
-  line-height: 1.5;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.65rem;
+  line-height: 1.4;
   color: var(--white);
 }
 
@@ -61,7 +62,6 @@
   min-width: 20px;
   text-align: center;
   font-size: 0.95rem;
-  margin-top: 2px;
 }
 
 .footer-bottom {
@@ -70,4 +70,116 @@
   padding-top: 1rem;
   font-size: 0.9rem;
   text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+  .app-footer {
+    padding: 1.8rem 0.9rem;
+  }
+
+  .app-footer .row {
+    gap: 1.4rem 1rem;
+  }
+
+  .app-footer .row > .col {
+    min-width: 160px;
+    padding: 0 0.6rem;
+  }
+
+  .logo-wrapper {
+    gap: 0.6rem;
+    align-items: center;
+  }
+
+  .logo-circle {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-footer {
+    text-align: center;
+    padding: 1.25rem 0.75rem;
+  }
+
+  .app-footer .row {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .app-footer .row > .col {
+    width: 100%;
+    min-width: unset;
+    padding: 0;
+  }
+
+  .logo-wrapper {
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo-circle {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+  }
+
+  .logo-text .navbar-brand {
+    display: block;
+  }
+
+  .logo-text p {
+    text-align: center;
+  }
+
+  .footer-link-item {
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .footer-bottom {
+    margin-top: 1rem;
+    padding-top: 0.75rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .app-footer {
+    padding: 1rem 0.5rem;
+    font-size: 0.92rem;
+  }
+
+  .app-footer .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
+  .logo-circle {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+  }
+
+  .footer-heading {
+    font-size: 0.95rem;
+  }
+
+  .footer-link-item span,
+  .hours-list p {
+    font-size: 0.95rem;
+  }
+
+  .footer-bottom p {
+    font-size: 0.84rem;
+  }
+
+  .logo-text p {
+    word-break: break-word;
+    white-space: normal;
+  }
 }
