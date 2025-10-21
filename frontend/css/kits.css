@@ -196,6 +196,8 @@
   }
 
   #kitsCarousel .carousel-inner {
+    padding-left: 16px;
+    padding-right: 16px;
     display: block;
   }
 
@@ -212,16 +214,15 @@
     max-width: 100%;
   }
 
-  #kits-carousel .carousel-control-prev,
-  #kits-carousel .carousel-control-next {
-    display: none !important;
-  }
-
   #kitsCarousel .d-none.d-md-block {
     display: none !important;
   }
 
   .card-kit {
+    min-height: 370px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
     border-radius: var(--card-radius);
     margin-bottom: 0.6rem;
   }

@@ -61,6 +61,7 @@ async function fetchAndRenderKits() {
 
 function renderKits(kits) {
   const carouselInner = document.querySelector("#carousel-kits-inner");
+  
   if (!carouselInner) {
     console.error("Elemento #carousel-kits-inner não encontrado.");
     return;
@@ -115,22 +116,22 @@ function renderKits(kits) {
       slide.className = "carousel-item" + (i === 0 ? " active" : "");
 
       const row = document.createElement("div");
-      row.className = "row mb-4";
+      row.className = "row g-4 align-items-stretch";
 
       for (let j = 0; j < 3; j++) {
         const kit = kits[i + j];
         const col = document.createElement("div");
-        col.className = "col-md-4 mb-3";
+        col.className = "col-md-4 d-flex";
 
         if (kit) {
           col.innerHTML = `
-            <div class="card card-kit h-100">
+            <div class="card card-kit h-100 mx-2">
               <img class="card-img-top" src="images/${kit.imagem}" alt="${kit.nome}">
-              <div class="card-body">
+              <div class="card-body d-flex flex-column">
                 <h4 class="card-title">${kit.nome}</h4>
                 <p class="card-text">Pessoas: ${kit.pessoas} | Itens: ${formatItems(kit.itens)}</p>
               </div>
-              <div class="card-footer d-flex justify-content-center">
+              <div class="card-footer d-flex justify-content-center mt-auto">
                 <span class="h5 mb-0 text-success">
                   ${Number(kit.preco || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
                 </span>
