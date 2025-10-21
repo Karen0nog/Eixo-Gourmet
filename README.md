@@ -28,7 +28,7 @@ Personalização: Desenvolvimento de um módulo para o usuário montar seu kit p
 
 ## 🔗 Deploy e Acesso Online
 
-O projeto está disponível online no seguinte endereço:
+O projeto está disponível online no seguinte endereço: https://eixo-gourmet.vercel.app/
 
 * **URL do Projeto:** 
 
