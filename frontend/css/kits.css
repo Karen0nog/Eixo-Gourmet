@@ -47,16 +47,16 @@
   border-radius: 12px;
   overflow: hidden;
   background: var(--white);
-  border: 0;
   display: flex;
   flex-direction: column;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
   border: 2px solid var(--sidebar-ring);
+  margin-bottom: 0.6rem;
 }
 
 .card-kit .card-img-top {
   width: 100%;
-  height: auto;
+  height: var(--card-img-height);
   object-fit: cover;
   display: block;
 }
@@ -87,6 +87,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  margin-top: auto;
 }
 
 .card-kit .card-footer .h5 {
@@ -98,6 +99,16 @@
 .card-kit:has(img[src*="pet"]) {
   border: 2px solid var(--chart-1);
   border-radius: 12px;
+}
+.carousel-item .row {
+  display: flex;
+  align-items: stretch;
+  margin-bottom: 0;
+  height: 100%;
+}
+
+.carousel-item .row .empty-col {
+  height: 100%;
 }
 
 /* Responsividade */
@@ -163,13 +174,18 @@
     font-size: 1rem;
   }
 
-  #kits-carousel .container,
   #kits-carousel {
-    padding-left: 0 !important; 
-    padding-right: 0 !important; 
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
     overflow: visible;
   }
-  
+
+  #kits-carousel .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   #kits-carousel .row {
     margin-left: 0 !important;
@@ -178,21 +194,9 @@
     padding-right: 0 !important;
     width: 100% !important;
   }
-  #kits-carousel {
-    padding-left: 0;
-    padding-right: 0;
-  }
 
   #kitsCarousel .carousel-inner {
     display: block;
-  }
-
-  #kits-carousel .row {
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 0;
-    padding-right: 0;
-    width: 100%; 
   }
 
   #kitsCarousel .carousel-item {
@@ -206,22 +210,15 @@
   #kitsCarousel .col-12 {
     flex: 0 0 100%;
     max-width: 100%;
-  } */
+  }
 
   #kits-carousel .carousel-control-prev,
-  #kits-carousel .carousel-control-next,
-  #kits-carousel a.carousel-control-prev,
-  #kits-carousel a.carousel-control-next {
+  #kits-carousel .carousel-control-next {
     display: none !important;
   }
 
   #kitsCarousel .d-none.d-md-block {
     display: none !important;
-  }
-
-  #kits-carousel .container,
-  #kitsCarousel {
-    overflow: visible;
   }
 
   .card-kit {

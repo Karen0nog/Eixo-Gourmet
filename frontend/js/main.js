@@ -68,88 +68,80 @@ function renderKits(kits) {
 
   carouselInner.innerHTML = "";
 
-  const isMobile = window.innerWidth < 768;
-
-  if (isMobile) {
-    kits.forEach((kit, index) => {
-      const slide = document.createElement("div");
-      slide.className = index === 0 ? "carousel-item active" : "carousel-item";
-
-      const row = document.createElement("div");
-      row.className = "row justify-content-center g-0";
-
-      const col = document.createElement("div");
-      col.className = "col-12";
-
-      const precoFormatado = Number(kit.preco || 0).toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-      });
-
-      col.innerHTML = `
-        <div class="card card-kit h-100" data-id="${kit._id}">
-          <img class="card-img-top img-fluid w-100" src="images/${
-            kit.imagem
-          }" alt="${kit.nome}">
-          <div class="card-body">
-            <h4 class="card-title">${kit.nome}</h4>
-            <p class="card-text">Pessoas: ${kit.pessoas} | Itens: ${
-        kit.itens || [].join(", ")
-      }</p>
-          </div>
-          </div>
-          <div class="card-footer d-flex justify-content-center">
-            <span class="h5 mb-0 text-success">${precoFormatado}</span>
-          </div>
-        </div>
-      `;
-      row.appendChild(col);
-      slide.appendChild(row);
-      carouselInner.appendChild(slide);
-    });
+  function formatItems(items) {
+    if (Array.isArray(items)) {
+      return items.join(", ");
+    }
+    return items ? items.toString() : "";
   }
 
-  // Desktop / tablet: renderiza em slides de 3
-  for (let i = 0; i < kits.length; i += 3) {
-    const slide = document.createElement("div");
-    slide.className = "carousel-item" + (i === 0 ? " active" : "");
+  if (window.innerWidth < 768) {
+    const scrollRow = document.createElement("div");
+    scrollRow.style.display = "flex";
+    scrollRow.style.overflowX = "auto";
+    scrollRow.style.gap = "1rem";
+    scrollRow.style.padding = "1rem 0";
 
-    const row = document.createElement("div");
-    row.className = "row justify-content-center g-4";
+    kits.forEach((kit) => {
+      const card = document.createElement("div");
+      card.className = "card card-kit";
+      card.style.flex = "0 0 80%";
+      card.style.maxWidth = "320px";
+      card.style.minWidth = "220px";
+      card.style.margin = "0 0.5rem";
 
-    for (let j = 0; j < 3; j++) {
-      const kit = kits[i + j];
-      const col = document.createElement("div");
-      col.className = "col-12 col-md-4";
+      card.innerHTML = `
+        <img class="card-img-top" src="images/${kit.imagem}" alt="${kit.nome}">
+        <div class="card-body">
+          <h4 class="card-title">${kit.nome}</h4>
+          <p class="card-text">Pessoas: ${kit.pessoas} | Itens: ${formatItems(kit.itens)}</p>
+        </div>
+        <div class="card-footer d-flex justify-content-center">
+          <span class="h5 mb-0 text-success">
+            ${Number(kit.preco || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+          </span>
+        </div>
+      `;
+      scrollRow.appendChild(card);
+    });
 
-      if (kit) {
-        const precoFormatado = Number(kit.preco || 0).toLocaleString("pt-BR", {
-          style: "currency",
-          currency: "BRL",
-        });
+    carouselInner.appendChild(scrollRow);
 
-        col.innerHTML = `
-          <div class="card card-kit h-100" data-id="${kit._id}">
-            <img class="card-img-top" src="images/${kit.imagem}" alt="${
-          kit.nome
-        }">
-            <div class="card-body">
-              <h4 class="card-title">${kit.nome}</h4>
-              <p class="card-text">Pessoas: ${kit.pessoas} | Itens: ${
-          kit.itens || [].join(", ")
-        }</p>
+  } else {
+    // Desktop view
+    for (let i = 0; i < kits.length; i += 3) {
+
+      const slide = document.createElement("div");
+      slide.className = "carousel-item" + (i === 0 ? " active" : "");
+
+      const row = document.createElement("div");
+      row.className = "row mb-4";
+
+      for (let j = 0; j < 3; j++) {
+        const kit = kits[i + j];
+        const col = document.createElement("div");
+        col.className = "col-md-4 mb-3";
+
+        if (kit) {
+          col.innerHTML = `
+            <div class="card card-kit h-100">
+              <img class="card-img-top" src="images/${kit.imagem}" alt="${kit.nome}">
+              <div class="card-body">
+                <h4 class="card-title">${kit.nome}</h4>
+                <p class="card-text">Pessoas: ${kit.pessoas} | Itens: ${formatItems(kit.itens)}</p>
+              </div>
+              <div class="card-footer d-flex justify-content-center">
+                <span class="h5 mb-0 text-success">
+                  ${Number(kit.preco || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                </span>
+              </div>
             </div>
-            <div class="card-footer justify-content-center d-flex">
-              <span class="h5 mb-0 text-success">${precoFormatado}</span>
-            </div>
-          </div>
-        `;
-      } else {
-        col.classList.add("d-none", "d-md-block");
+          `;
+        }
+        row.appendChild(col);
       }
-      row.appendChild(col);
+      slide.appendChild(row);
+      carouselInner.appendChild(slide);
     }
-    slide.appendChild(row);
-    carouselInner.appendChild(slide);
   }
 }
