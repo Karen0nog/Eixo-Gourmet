@@ -37,13 +37,11 @@ document.addEventListener("DOMContentLoaded", function () {
   outlineButton.addEventListener("pointerover", showPartyPetKit);
 
   outlineButton.addEventListener("pointerleave", showPartyKit);
+  
+  fetchAndRenderKits();
 });
 
-if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", fetchAndRenderKits);
-} else {
-  fetchAndRenderKits();
-}
+
 
 // KITS
 
