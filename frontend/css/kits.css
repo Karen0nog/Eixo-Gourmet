@@ -133,7 +133,7 @@
   }
 
   .card-kit .card-body {
-    padding: var (--card-padding);
+    padding: var(--card-padding);
   }
 
   .card-kit .card-title {

@@ -62,13 +62,14 @@ const INITIAL_KITS = [
 ];
 
 async function createInitialKits() {
-  const results = INITIAL_KITS.map(async (kitData) => {
+  const promises = INITIAL_KITS.map(async (kitData) => {
     const filter = { nome: kitData.nome };
     const update = { ...kitData };
     const options = { upsert: true, new: true, setDefaultsOnInsert: true };
     return Kit.findOneAndUpdate(filter, update, options);
   });
-  await Promise.all(results);
+
+  await Promise.all(promises);
 }
 
 async function startServer() {
