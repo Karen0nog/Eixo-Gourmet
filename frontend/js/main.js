@@ -37,11 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
   outlineButton.addEventListener("pointerover", showPartyPetKit);
 
   outlineButton.addEventListener("pointerleave", showPartyKit);
-  
+
   fetchAndRenderKits();
 });
-
-
 
 // KITS
 
@@ -59,7 +57,7 @@ async function fetchAndRenderKits() {
 
 function renderKits(kits) {
   const carouselInner = document.querySelector("#carousel-kits-inner");
-  
+
   if (!carouselInner) {
     console.error("Elemento #carousel-kits-inner não encontrado.");
     return;
@@ -93,11 +91,16 @@ function renderKits(kits) {
         <img class="card-img-top" src="images/${kit.imagem}" alt="${kit.nome}">
         <div class="card-body">
           <h4 class="card-title">${kit.nome}</h4>
-          <p class="card-text">Pessoas: ${kit.pessoas} | Itens: ${formatItems(kit.itens)}</p>
+          <p class="card-text">Pessoas: ${kit.pessoas} | Itens: ${formatItems(
+        kit.itens
+      )}</p>
         </div>
         <div class="card-footer d-flex justify-content-center">
           <span class="h5 mb-0 text-success">
-            ${Number(kit.preco || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+            ${Number(kit.preco || 0).toLocaleString("pt-BR", {
+              style: "currency",
+              currency: "BRL",
+            })}
           </span>
         </div>
       `;
@@ -105,11 +108,9 @@ function renderKits(kits) {
     });
 
     carouselInner.appendChild(scrollRow);
-
   } else {
     // Desktop view
     for (let i = 0; i < kits.length; i += 3) {
-
       const slide = document.createElement("div");
       slide.className = "carousel-item" + (i === 0 ? " active" : "");
 
@@ -124,14 +125,21 @@ function renderKits(kits) {
         if (kit) {
           col.innerHTML = `
             <div class="card card-kit h-100 mx-2">
-              <img class="card-img-top" src="images/${kit.imagem}" alt="${kit.nome}">
+              <img class="card-img-top" src="images/${kit.imagem}" alt="${
+            kit.nome
+          }">
               <div class="card-body d-flex flex-column">
                 <h4 class="card-title">${kit.nome}</h4>
-                <p class="card-text">Pessoas: ${kit.pessoas} | Itens: ${formatItems(kit.itens)}</p>
+                <p class="card-text">Pessoas: ${
+                  kit.pessoas
+                } | Itens: ${formatItems(kit.itens)}</p>
               </div>
               <div class="card-footer d-flex justify-content-center mt-auto">
                 <span class="h5 mb-0 text-success">
-                  ${Number(kit.preco || 0).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+                  ${Number(kit.preco || 0).toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
                 </span>
               </div>
             </div>
@@ -144,3 +152,4 @@ function renderKits(kits) {
     }
   }
 }
+
